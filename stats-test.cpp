@@ -5,7 +5,7 @@
 
 TEST(Statistics, ReportsAverageMinMax) {
     auto computedStats = Statistics::ComputeStatistics({1.5, 8.9, 3.2, 4.5});
-    float epsilon = 0.001;
+    float epsilon = 0.001f;
     EXPECT_LT(std::abs(computedStats.average - 4.525), epsilon);
     EXPECT_LT(std::abs(computedStats.max - 8.9), epsilon);
     EXPECT_LT(std::abs(computedStats.min - 1.5), epsilon);
@@ -18,4 +18,7 @@ TEST(Statistics, AverageNaNForEmpty) {
     
     //Design the gtest EXPECT statement here.
     //Use http://www.cplusplus.com/reference/cmath/isnan/
+    EXPECT_EQ(std::isnan(computedStats.average), 1);
+    EXPECT_EQ(std::isnan(computedStats.max), 1);
+    EXPECT_EQ(std::isnan(computedStats.min), 1);
 }
